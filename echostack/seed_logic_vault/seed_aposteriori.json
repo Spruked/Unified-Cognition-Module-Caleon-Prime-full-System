@@ -1,0 +1,434 @@
+{
+  "$schema": "https://schemas.seedvault.org/core/v1.1.0",
+  "vault_name": "SeedVault_Aposteriori",
+  "vault_id": "seed_aposteriori",
+  "version": "1.1.0",
+  "category": "Epistemology",
+  "type": "seed",
+  "license": "CC0-1.0",
+  "generated": "2025-08-22T17:46:00-05:00",
+  "compatibility": "backward-compatible",
+  "description": "Knowledge and reasoning derived from empirical observation and experience, forming the foundation of inductive and scientific methods",
+  "author": "Bryan A. Spruk",
+  "reasoning_type": "a_posteriori",
+  "immutable": true,
+  "index": {
+    "a_posteriori_reasoning": "epi:a_posteriori_reasoning",
+    "empirical_observation": "epi:empirical_observation",
+    "inductive_reasoning": "epi:inductive_reasoning",
+    "scientific_method": "epi:scientific_method",
+    "falsification": "epi:falsification",
+    "statistical_inference": "epi:statistical_inference",
+    "causal_inference": "epi:causal_inference",
+    "experiential_learning": "epi:experiential_learning",
+    "evidence_based_reasoning": "epi:evidence_based_reasoning"
+  },
+  "entries": [
+    {
+      "id": "epi:a_posteriori_reasoning",
+      "term": "A Posteriori Reasoning",
+      "type": "concept",
+      "definition": "Knowledge or justification dependent on experience or empirical observation. Truths established through sensory data, experimentation, and observation of the world.",
+      "lineage": "SEED-EPI-002",
+      "origin": "Aristotle, refined by British Empiricists (Locke, Hume, Mill)",
+      "period": "Classical Philosophy to Modern Science",
+      "source": "Empirical Epistemology",
+      "source_id": "WD:Q208551",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/A_posteriori",
+        "https://plato.stanford.edu/entries/apriori/"
+      ],
+      "applications": [
+        "Scientific Method",
+        "Inductive Reasoning",
+        "Scenario Evaluation",
+        "Outcome-Based Ethics",
+        "Telemetry Feedback",
+        "Empirical Calibration",
+        "Data-Driven Decision Making"
+      ],
+      "examples": [
+        "Observing that 'all observed ravens are black' leads to the generalization 'all ravens are black'",
+        "Testing hypotheses through controlled experiments",
+        "Learning language through immersion and practice"
+      ],
+      "related_ids": [
+        "epi:a_priori_reasoning",
+        "logic:inductive_reasoning",
+        "logic:empirical_method"
+      ],
+      "reflex_tier": "Tier 2 — Empirical Logic",
+      "certainty_level": "probabilistic",
+      "validation_methods": ["empirical_testing", "statistical_analysis", "peer_review"]
+    },
+    {
+      "id": "epi:empirical_observation",
+      "term": "Empirical Observation",
+      "type": "method",
+      "definition": "Systematic collection of data through sensory experience, measurement, and controlled experimentation. The foundation of all a posteriori knowledge.",
+      "lineage": "SEED-EPI-003",
+      "origin": "Aristotle, Bacon, Scientific Revolution",
+      "period": "Ancient to Modern Science",
+      "source": "Empirical Methodology",
+      "source_id": "WD:Q208551",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Empirical_evidence",
+        "https://plato.stanford.edu/entries/empiricism/"
+      ],
+      "applications": [
+        "Data Collection",
+        "Quality Control",
+        "Field Research",
+        "Sensor Networks",
+        "Observational Studies"
+      ],
+      "examples": [
+        "Measuring temperature changes in climate research",
+        "Counting votes in elections",
+        "Recording behavioral patterns in psychology"
+      ],
+      "related_ids": [
+        "epi:a_posteriori_reasoning",
+        "epi:scientific_method",
+        "epi:statistical_inference"
+      ],
+      "reflex_tier": "Tier 1 — Sensory Data",
+      "certainty_level": "direct_observation",
+      "validation_methods": ["measurement_reliability", "observer_calibration", "instrument_validation"]
+    },
+    {
+      "id": "epi:inductive_reasoning",
+      "term": "Inductive Reasoning",
+      "type": "process",
+      "definition": "Drawing general conclusions from specific observations. Moving from particular instances to universal principles through pattern recognition.",
+      "lineage": "SEED-EPI-004",
+      "origin": "Aristotle, Francis Bacon, John Stuart Mill",
+      "period": "Classical Logic to Modern Statistics",
+      "source": "Inductive Logic",
+      "source_id": "WD:Q201696",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Inductive_reasoning",
+        "https://plato.stanford.edu/entries/induction-problem/"
+      ],
+      "applications": [
+        "Scientific Theory Formation",
+        "Machine Learning",
+        "Pattern Recognition",
+        "Trend Analysis",
+        "Hypothesis Generation"
+      ],
+      "examples": [
+        "Observing many white swans leads to 'all swans are white'",
+        "Repeated successful experiments suggest a general law",
+        "Historical data predicting future behavior"
+      ],
+      "related_ids": [
+        "epi:a_posteriori_reasoning",
+        "epi:statistical_inference",
+        "epi:causal_inference"
+      ],
+      "reflex_tier": "Tier 2 — Pattern Recognition",
+      "certainty_level": "probabilistic",
+      "validation_methods": ["statistical_significance", "cross_validation", "falsification_attempts"]
+    },
+    {
+      "id": "epi:scientific_method",
+      "term": "Scientific Method",
+      "type": "framework",
+      "definition": "Systematic approach to empirical investigation: observation, hypothesis formation, experimentation, analysis, and theory revision.",
+      "lineage": "SEED-EPI-005",
+      "origin": "Roger Bacon, Galileo, Newton",
+      "period": "Scientific Revolution",
+      "source": "Scientific Methodology",
+      "source_id": "WD:Q46857",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Scientific_method",
+        "https://plato.stanford.edu/entries/scientific-method/"
+      ],
+      "applications": [
+        "Research Design",
+        "Quality Assurance",
+        "Problem Solving",
+        "Innovation Processes",
+        "Evidence-Based Policy"
+      ],
+      "examples": [
+        "Testing drug efficacy through double-blind trials",
+        "Climate change research using multiple data sources",
+        "Software testing with hypothesis-driven debugging"
+      ],
+      "related_ids": [
+        "epi:empirical_observation",
+        "epi:falsification",
+        "epi:evidence_based_reasoning"
+      ],
+      "reflex_tier": "Tier 3 — Systematic Inquiry",
+      "certainty_level": "methodologically_controlled",
+      "validation_methods": ["reproducibility", "peer_review", "meta_analysis"]
+    },
+    {
+      "id": "epi:falsification",
+      "term": "Falsification",
+      "type": "principle",
+      "definition": "Scientific theories must be testable and potentially refutable. A theory gains strength when it survives attempts to disprove it.",
+      "lineage": "SEED-EPI-006",
+      "origin": "Karl Popper",
+      "period": "20th Century Philosophy of Science",
+      "source": "Critical Rationalism",
+      "source_id": "WD:Q473400",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Falsifiability",
+        "https://plato.stanford.edu/entries/popper/"
+      ],
+      "applications": [
+        "Theory Testing",
+        "Quality Control",
+        "Risk Assessment",
+        "Hypothesis Validation",
+        "Error Detection"
+      ],
+      "examples": [
+        "Testing if 'all swans are white' by looking for black swans",
+        "Attempting to disprove Einstein's theories",
+        "Debugging by trying to break the system"
+      ],
+      "related_ids": [
+        "epi:scientific_method",
+        "epi:evidence_based_reasoning",
+        "epi:experiential_learning"
+      ],
+      "reflex_tier": "Tier 3 — Critical Testing",
+      "certainty_level": "corroborated_not_proven",
+      "validation_methods": ["attempted_falsification", "alternative_explanations", "robustness_testing"]
+    },
+    {
+      "id": "epi:statistical_inference",
+      "term": "Statistical Inference",
+      "type": "method",
+      "definition": "Drawing conclusions about populations from sample data using probability theory and statistical methods.",
+      "lineage": "SEED-EPI-007",
+      "origin": "Ronald Fisher, Jerzy Neyman",
+      "period": "20th Century Statistics",
+      "source": "Mathematical Statistics",
+      "source_id": "WD:Q751269",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Statistical_inference",
+        "https://plato.stanford.edu/entries/statistics/"
+      ],
+      "applications": [
+        "A/B Testing",
+        "Polling and Surveys",
+        "Quality Control",
+        "Medical Trials",
+        "Economic Forecasting"
+      ],
+      "examples": [
+        "Polling 1000 voters to predict election outcomes",
+        "Clinical trials determining drug effectiveness",
+        "Quality sampling in manufacturing"
+      ],
+      "related_ids": [
+        "epi:inductive_reasoning",
+        "epi:empirical_observation",
+        "epi:evidence_based_reasoning"
+      ],
+      "reflex_tier": "Tier 2 — Quantitative Analysis",
+      "certainty_level": "confidence_intervals",
+      "validation_methods": ["p_values", "confidence_intervals", "power_analysis"]
+    },
+    {
+      "id": "epi:causal_inference",
+      "term": "Causal Inference",
+      "type": "process",
+      "definition": "Determining cause-and-effect relationships from observational data, distinguishing correlation from causation.",
+      "lineage": "SEED-EPI-008",
+      "origin": "David Hume, Judea Pearl",
+      "period": "Modern Causal Analysis",
+      "source": "Causal Reasoning",
+      "source_id": "WD:Q504890",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Causal_inference",
+        "https://plato.stanford.edu/entries/causation-metaphysics/"
+      ],
+      "applications": [
+        "Policy Evaluation",
+        "Epidemiology",
+        "Economic Impact Analysis",
+        "Treatment Effectiveness",
+        "Root Cause Analysis"
+      ],
+      "examples": [
+        "Does smoking cause lung cancer? (controlling for confounders)",
+        "Impact of education on income (accounting for selection bias)",
+        "Effectiveness of interventions in social programs"
+      ],
+      "related_ids": [
+        "epi:inductive_reasoning",
+        "epi:statistical_inference",
+        "epi:scientific_method"
+      ],
+      "reflex_tier": "Tier 3 — Causal Analysis",
+      "certainty_level": "conditional_probability",
+      "validation_methods": ["randomized_controlled_trials", "instrumental_variables", "natural_experiments"]
+    },
+    {
+      "id": "epi:experiential_learning",
+      "term": "Experiential Learning",
+      "type": "process",
+      "definition": "Knowledge acquisition through direct experience, trial-and-error, and reflective practice. Learning by doing.",
+      "lineage": "SEED-EPI-009",
+      "origin": "John Dewey, David Kolb",
+      "period": "Modern Education Theory",
+      "source": "Learning Theory",
+      "source_id": "WD:Q207425",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Experiential_learning",
+        "https://plato.stanford.edu/entries/learning-theory/"
+      ],
+      "applications": [
+        "Skill Development",
+        "Adaptive Systems",
+        "Personal Growth",
+        "Organizational Learning",
+        "AI Training"
+      ],
+      "examples": [
+        "Learning to ride a bicycle through practice",
+        "Machine learning algorithms improving with data",
+        "Professionals developing expertise through experience"
+      ],
+      "related_ids": [
+        "epi:a_posteriori_reasoning",
+        "epi:empirical_observation",
+        "epi:evidence_based_reasoning"
+      ],
+      "reflex_tier": "Tier 1 — Direct Experience",
+      "certainty_level": "practice_based",
+      "validation_methods": ["performance_outcomes", "skill_assessment", "longitudinal_tracking"]
+    },
+    {
+      "id": "epi:evidence_based_reasoning",
+      "term": "Evidence-Based Reasoning",
+      "type": "framework",
+      "definition": "Decision-making and belief formation grounded in systematic evaluation of empirical evidence and elimination of bias.",
+      "lineage": "SEED-EPI-010",
+      "origin": "Evidence-Based Medicine, Scientific Method",
+      "period": "Late 20th Century",
+      "source": "Evidence-Based Practice",
+      "source_id": "WD:Q238034",
+      "reference_urls": [
+        "https://en.wikipedia.org/wiki/Evidence-based_medicine",
+        "https://plato.stanford.edu/entries/epistemology/"
+      ],
+      "applications": [
+        "Medical Practice",
+        "Policy Making",
+        "Business Decisions",
+        "Legal Reasoning",
+        "Personal Choices"
+      ],
+      "examples": [
+        "Doctors using clinical trial data for treatment decisions",
+        "Governments using research for policy formulation",
+        "Consumers evaluating product claims with testing data"
+      ],
+      "related_ids": [
+        "epi:scientific_method",
+        "epi:falsification",
+        "epi:statistical_inference"
+      ],
+      "reflex_tier": "Tier 3 — Systematic Evaluation",
+      "certainty_level": "evidence_weighted",
+      "validation_methods": ["systematic_reviews", "meta_analysis", "bias_assessment"]
+    }
+  ],
+  "learning_principles": [
+    "Knowledge is built from sensory experience and observation",
+    "Truth claims require empirical verification and testing",
+    "Induction moves from particular cases to general principles",
+    "Certainty is probabilistic and subject to revision",
+    "Experience shapes and constrains possible knowledge",
+    "Scientific method provides systematic investigation framework",
+    "Falsification strengthens theories through survival of tests",
+    "Statistical methods quantify uncertainty and patterns",
+    "Causal inference requires careful control of confounding factors",
+    "Learning through direct experience builds practical wisdom",
+    "Evidence-based reasoning eliminates bias and subjectivity"
+  ],
+  "parameters": {
+    "certainty_threshold": 0.85,
+    "inference_method": "inductive",
+    "evidence_requirement": "empirical",
+    "contradiction_handling": "evidence_based_revision",
+    "observation_priority": "systematic_collection",
+    "falsification_requirement": "mandatory",
+    "statistical_confidence": "0.95",
+    "causal_inference_method": "counterfactual_framework",
+    "learning_style": "experiential_reflective",
+    "evidence_hierarchy": ["randomized_trials", "observational_studies", "anecdotal_evidence"]
+  },
+  "operations": {
+    "evaluate_evidence": {
+      "description": "Assess empirical evidence for truth claims",
+      "input": {"observations": "array", "hypothesis": "string"},
+      "output": {"support_level": "float", "confidence": "float"}
+    },
+    "inductive_generalization": {
+      "description": "Form general conclusions from specific observations",
+      "input": {"instances": "array", "property": "string"},
+      "output": {"generalization": "string", "certainty": "float"}
+    },
+    "scientific_method_execution": {
+      "description": "Execute the scientific method: observe, hypothesize, test, analyze",
+      "input": {"phenomenon": "object", "available_resources": "array"},
+      "output": {"hypothesis": "string", "experimental_design": "object", "expected_outcomes": "array"}
+    },
+    "falsification_testing": {
+      "description": "Design and execute tests to attempt falsification of hypotheses",
+      "input": {"hypothesis": "string", "current_evidence": "array"},
+      "output": {"test_design": "object", "critical_experiments": "array", "falsification_criteria": "object"}
+    },
+    "statistical_analysis": {
+      "description": "Perform statistical inference on observational data",
+      "input": {"data": "array", "analysis_type": "string", "significance_level": "float"},
+      "output": {"results": "object", "confidence_intervals": "object", "p_values": "array"}
+    },
+    "causal_inference_analysis": {
+      "description": "Analyze potential causal relationships in observational data",
+      "input": {"variables": "array", "observed_associations": "object", "confounders": "array"},
+      "output": {"causal_estimate": "float", "confidence_level": "float", "alternative_explanations": "array"}
+    },
+    "experiential_learning_cycle": {
+      "description": "Guide through concrete experience, reflective observation, abstract conceptualization, and active experimentation",
+      "input": {"experience": "object", "current_understanding": "object"},
+      "output": {"learning_objectives": "array", "reflection_questions": "array", "next_experiments": "array"}
+    },
+    "evidence_synthesis": {
+      "description": "Synthesize multiple lines of evidence into coherent conclusions",
+      "input": {"evidence_sources": "array", "research_question": "string", "quality_criteria": "object"},
+      "output": {"synthesized_conclusion": "string", "evidence_strength": "float", "remaining_uncertainties": "array"}
+    }
+  },
+  "integration": {
+    "compatible_modules": ["inductive_reasoner", "empirical_validator", "data_processor", "scientific_method_engine", "statistical_analyzer", "causal_inference_module", "experiential_learner", "evidence_synthesizer"],
+    "input_sources": ["sensory_data", "experimental_results", "observational_records", "statistical_data", "causal_observations", "experiential_feedback", "research_literature"],
+    "output_destinations": ["hypothesis_generator", "theory_builder", "decision_engine", "policy_maker", "learning_system", "quality_assurance", "risk_assessment"]
+  },
+  "performance_metrics": {
+    "inference_speed": "variable",
+    "certainty_range": "0.1-0.95",
+    "evidence_capacity": "unlimited",
+    "revision_frequency": "continuous",
+    "falsification_resistance": "high",
+    "statistical_power": "configurable",
+    "causal_inference_accuracy": "context_dependent",
+    "experiential_learning_rate": "adaptive",
+    "evidence_integration_efficiency": "scalable"
+  },
+  "access_control": {
+    "mutable": false,
+    "curator": "Bryan A. Spruk",
+    "authorized_editors": ["Bryan A. Spruk"],
+    "hash": "sha256:4f8c9e2a1b5d7f3e6c8a9b2d4e5f6a7c8b9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4"
+  }
+}

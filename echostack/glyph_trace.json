@@ -1,0 +1,19 @@
+{
+  "glyph": "EchoStack",
+  "version": "1.0.0",
+  "signature": "vault-bound",
+  "origin": "Prometheus Prime",
+  "protocol": "ICS-V2-2025-10-18",
+  "trace": {
+    "initialized": "pending",
+    "last_event": "pending",
+    "harmonizer": "enabled",
+    "vault_logger": "active"
+  },
+  "integrity": {
+    "hash_algorithm": "sha256",
+    "sealed": false,
+    "last_verified": "pending"
+  },
+  "notes": "This glyph anchors EchoStack to the legacy vault and confirms ICS alignment."
+}

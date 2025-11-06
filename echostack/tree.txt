@@ -1,0 +1,34 @@
+.dockerignore
+.gitignore
+config.json
+docker-compose.yml
+Dockerfile
+echostack.py
+echostack_module/
+    __init__.py
+    echo_core.py
+    config.json
+    core_principles.py
+    ethics_trace_test.py
+    harmonizer_cb.py
+    routes.py
+    trace_logger.py
+    vault_loader.py
+echo_trace_test.py
+glyph_trace.json
+LICENSE
+logic_engine.py
+main.py
+modules/
+    __init__.py
+README.md
+reflection_logger.py
+requirements.txt
+telemetry.json
+tests/
+    __init__.py
+    test_exports.py
+    test_logic.py
+tree.txt
+vault_loader.py
+__init__.py

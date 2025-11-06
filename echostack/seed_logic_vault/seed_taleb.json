@@ -1,0 +1,152 @@
+{
+  "$schema": "https://schemas.seedvault.org/core/v1.1.0",
+  "vault_name": "SeedVault_Taleb",
+  "vault_id": "seed_taleb",
+  "version": "1.1.0",
+  "category": "Risk",
+  "type": "seed",
+  "license": "CC0-1.0",
+  "generated": "2025-10-23T12:00:00Z",
+  "compatibility": "backward-compatible",
+  "description": "Nassim Nicholas Taleb's antifragile philosophy emphasizing resilience, unpredictability, and the benefits of volatility",
+  "author": "Bryan A. Spruk",
+  "philosopher": "Nassim Nicholas Taleb",
+  "reasoning_type": "antifragile_risk_management",
+  "immutable": true,
+  "index": {
+    "black_swan": "risk:black_swan",
+    "antifragility": "risk:antifragility",
+    "skin_in_game": "risk:skin_in_game",
+    "via_negativa": "risk:via_negativa",
+    "ludic_fallacy": "risk:ludic_fallacy",
+    "convexity": "risk:convexity",
+    "optionality": "risk:optionality"
+  },
+  "entries": [
+    {
+      "id": "risk:black_swan",
+      "term": "Black Swan Events",
+      "type": "concept",
+      "definition": "Rare, high-impact events that are unpredictable and rationalized after the fact. They lie outside the realm of regular expectations.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Black_swan_theory"],
+      "examples": ["9/11 attacks", "2008 financial crisis", "COVID-19 pandemic"],
+      "related_ids": ["risk:antifragility", "risk:ludic_fallacy"]
+    },
+    {
+      "id": "risk:antifragility",
+      "term": "Antifragility",
+      "type": "principle",
+      "definition": "Systems that gain from disorder, volatility, and stress. Beyond resilience, they improve under pressure.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Antifragile"],
+      "examples": ["Evolution through natural selection", "Weightlifting building muscle", "Trial-and-error learning"],
+      "related_ids": ["risk:black_swan", "risk:convexity"]
+    },
+    {
+      "id": "risk:skin_in_game",
+      "term": "Skin in the Game",
+      "type": "principle",
+      "definition": "Decision-makers should share in the risks of their actions. Accountability through personal exposure.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Skin_in_the_game"],
+      "examples": ["CEOs investing personal money", "Doctors treating themselves", "Advisors using their own strategies"],
+      "related_ids": ["risk:asymmetric_payoffs", "risk:accountability"]
+    },
+    {
+      "id": "risk:via_negativa",
+      "term": "Via Negativa",
+      "type": "strategy",
+      "definition": "Improving systems by removing harmful elements instead of adding features. Subtraction over addition.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Via_negativa"],
+      "examples": ["Dieting by removing foods", "Simplifying code", "Reducing bureaucracy"],
+      "related_ids": ["risk:minimalism", "risk:fragility_removal"]
+    },
+    {
+      "id": "risk:ludic_fallacy",
+      "term": "Ludic Fallacy",
+      "type": "fallacy",
+      "definition": "Mistaking structured, rule-based randomness for real-world complexity. Casino thinking in complex domains.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Ludic_fallacy"],
+      "examples": ["Financial models ignoring black swans", "War games vs real warfare", "Lab experiments vs field conditions"],
+      "related_ids": ["risk:black_swan", "risk:overconfidence"]
+    },
+    {
+      "id": "risk:convexity",
+      "term": "Convexity",
+      "type": "property",
+      "definition": "Asymmetric payoff structures where gains are amplified and losses are limited. The foundation of antifragility.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Convex_function"],
+      "examples": ["Options trading", "Trial-and-error learning", "Biological evolution"],
+      "related_ids": ["risk:antifragility", "risk:optionality"]
+    },
+    {
+      "id": "risk:optionality",
+      "term": "Optionality",
+      "type": "strategy",
+      "definition": "Maintaining flexibility and multiple paths forward. The ability to benefit from positive black swans while limiting downside.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Real_options_valuation"],
+      "examples": ["Keeping career options open", "Diversified investments", "Prototyping before commitment"],
+      "related_ids": ["risk:convexity", "risk:flexibility"]
+    }
+  ],
+  "learning_principles": [
+    "Expect the unexpected — plan for resilience, not prediction.",
+    "Remove fragility before adding complexity.",
+    "Align incentives so decision-makers face the same risks as others.",
+    "Seek asymmetric payoffs where gains exceed losses.",
+    "Maintain optionality to benefit from positive surprises.",
+    "Learn from trial-and-error rather than theoretical models.",
+    "Avoid the ludic fallacy by respecting real-world complexity."
+  ],
+  "parameters": {
+    "risk_philosophy": "antifragile",
+    "prediction_focus": "unpredictable_events",
+    "system_design": "convex_payoffs",
+    "decision_making": "skin_in_game",
+    "improvement_method": "via_negativa"
+  },
+  "operations": {
+    "fragility_assessment": {
+      "description": "Evaluate systems for fragility, robustness, or antifragility",
+      "input": {"system": "object", "stressors": "array"},
+      "output": {"fragility_level": "string", "improvement_suggestions": "array"}
+    },
+    "black_swan_detection": {
+      "description": "Identify potential black swan events in scenarios",
+      "input": {"scenario": "object", "historical_data": "array"},
+      "output": {"potential_black_swans": "array", "preparedness_level": "float"}
+    },
+    "convexity_analysis": {
+      "description": "Analyze payoff structures for convexity",
+      "input": {"payoff_structure": "object"},
+      "output": {"convexity_score": "float", "optimization_suggestions": "array"}
+    },
+    "skin_in_game_check": {
+      "description": "Verify if decision-makers have appropriate skin in the game",
+      "input": {"decision": "object", "stakeholders": "array"},
+      "output": {"skin_in_game_level": "float", "recommendations": "array"}
+    }
+  },
+  "integration": {
+    "compatible_modules": ["risk_analyzer", "decision_engine", "resilience_builder"],
+    "input_sources": ["market_data", "historical_events", "system_stressors"],
+    "output_destinations": ["strategy_optimization", "risk_mitigation", "opportunity_identification"]
+  },
+  "performance_metrics": {
+    "resilience_level": "antifragile",
+    "prediction_accuracy": "embraces_uncertainty",
+    "payoff_asymmetry": "positive",
+    "decision_quality": "skin_in_game_aligned"
+  },
+  "access_control": {
+    "mutable": false,
+    "curator": "Bryan A. Spruk",
+    "authorized_editors": ["Bryan A. Spruk"],
+    "hash": "sha256:d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2"
+  }
+}

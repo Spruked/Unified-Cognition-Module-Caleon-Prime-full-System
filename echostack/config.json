@@ -1,0 +1,11 @@
+{
+  "module_name": "EchoStack",
+  "version": "1.0.0",
+  "port": 8003,
+  "protocol": "ICS-V2-2025-10-18",
+  "vault_compliance": true,
+  "logging_enabled": true,
+  "harmonizer_enabled": true,
+  "websocket_route": "/ws/echo",
+  "trace_log_path": "../logs/echostack_trace.log"
+}

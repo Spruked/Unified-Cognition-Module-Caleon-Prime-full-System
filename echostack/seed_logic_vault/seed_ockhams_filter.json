@@ -1,0 +1,218 @@
+{
+  "$schema": "https://schemas.seedvault.org/core/v1.1.0",
+  "vault_name": "SeedVault_Ockhams_Filter",
+  "vault_id": "seed_ockhams_filter",
+  "version": "1.1.0",
+  "category": "Logic",
+  "type": "seed",
+  "license": "CC0-1.0",
+  "generated": "2025-10-23T12:00:00Z",
+  "compatibility": "backward-compatible",
+  "description": "William of Ockham's principle of parsimony applied to reasoning, filtering out unnecessary complexity and paradoxes",
+  "author": "Bryan A. Spruk",
+  "philosopher": "William of Ockham",
+  "reasoning_type": "parsimonious_logic",
+  "immutable": true,
+  "index": {
+    "simplest_sufficient_cause": "logic:simplest_sufficient_cause",
+    "non_redundant_logic": "logic:non_redundant_logic",
+    "minimal_viable_inference": "logic:minimal_viable_inference",
+    "liar_paradox": "logic:liar_paradox",
+    "ship_theseus": "logic:ship_theseus",
+    "barber_paradox": "logic:barber_paradox",
+    "zenos_arrow": "logic:zenos_arrow",
+    "newcombs_problem": "logic:newcombs_problem",
+    "raven_paradox": "logic:raven_paradox",
+    "sorites_paradox": "logic:sorites_paradox",
+    "bootstrap_paradox": "logic:bootstrap_paradox",
+    "omnipotence_paradox": "logic:omnipotence_paradox",
+    "unexpected_hanging": "logic:unexpected_hanging"
+  },
+  "entries": [
+    {
+      "id": "logic:simplest_sufficient_cause",
+      "term": "Simplest Sufficient Cause",
+      "type": "principle",
+      "definition": "Prefer the explanation that requires the fewest assumptions while still accounting for all observed phenomena.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Occam%27s_razor"],
+      "examples": ["Sunrise explained by Earth's rotation, not complex machinery", "Evolution by natural selection over intelligent design"],
+      "related_ids": ["logic:minimal_viable_inference", "logic:non_redundant_logic"]
+    },
+    {
+      "id": "logic:non_redundant_logic",
+      "term": "Non-Redundant Logic",
+      "type": "principle",
+      "definition": "Eliminate steps that do not contribute to the outcome or introduce unnecessary complexity.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Occam%27s_razor"],
+      "examples": ["Removing duplicate code", "Simplifying mathematical proofs"],
+      "related_ids": ["logic:simplest_sufficient_cause", "logic:minimal_viable_inference"]
+    },
+    {
+      "id": "logic:minimal_viable_inference",
+      "term": "Minimal Viable Inference",
+      "type": "principle",
+      "definition": "Select the smallest set of premises that still yield the intended conclusion.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Occam%27s_razor"],
+      "examples": ["Direct proofs over indirect ones", "Essential axioms only"],
+      "related_ids": ["logic:simplest_sufficient_cause", "logic:non_redundant_logic"]
+    },
+    {
+      "id": "logic:liar_paradox",
+      "term": "Liar Paradox",
+      "type": "paradox",
+      "definition": "A statement that refers to itself in a way that creates a contradiction, e.g., 'This statement is false.'",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Liar_paradox"],
+      "examples": ["'This sentence is false'", "Self-referential statements"],
+      "related_ids": ["logic:barber_paradox", "logic:russell_paradox"]
+    },
+    {
+      "id": "logic:ship_theseus",
+      "term": "Ship of Theseus",
+      "type": "paradox",
+      "definition": "Explores whether an object that has had all its components replaced remains fundamentally the same object.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Ship_of_Theseus"],
+      "examples": ["Replacing all parts of a ship", "Identity through time"],
+      "related_ids": ["logic:identity", "logic:change"]
+    },
+    {
+      "id": "logic:barber_paradox",
+      "term": "Barber Paradox",
+      "type": "paradox",
+      "definition": "A logical inconsistency arising from self-reference: the barber shaves everyone who does not shave themselves—does he shave himself?",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Barber_paradox"],
+      "examples": ["Village barber scenarios", "Self-referential sets"],
+      "related_ids": ["logic:liar_paradox", "logic:russell_paradox"]
+    },
+    {
+      "id": "logic:zenos_arrow",
+      "term": "Zeno's Arrow",
+      "type": "paradox",
+      "definition": "Challenges motion by arguing that an arrow in flight is motionless at any single instant in time.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Zeno%27s_paradoxes"],
+      "examples": ["Arrow at any instant", "Infinite divisibility of time"],
+      "related_ids": ["logic:motion", "logic:infinity"]
+    },
+    {
+      "id": "logic:newcombs_problem",
+      "term": "Newcomb's Problem",
+      "type": "paradox",
+      "definition": "A decision theory paradox involving prediction, free will, and expected utility.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Newcomb%27s_paradox"],
+      "examples": ["Predictive boxes", "Causal vs evidential decision theory"],
+      "related_ids": ["logic:decision_theory", "logic:free_will"]
+    },
+    {
+      "id": "logic:raven_paradox",
+      "term": "Raven Paradox",
+      "type": "paradox",
+      "definition": "Observing a non-black non-raven (e.g., a green apple) supports the hypothesis that all ravens are black—challenging intuitive logic.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Raven_paradox"],
+      "examples": ["Confirmation bias in induction", "Equivalence of conditionals"],
+      "related_ids": ["logic:induction", "logic:confirmation"]
+    },
+    {
+      "id": "logic:sorites_paradox",
+      "term": "Sorites Paradox",
+      "type": "paradox",
+      "definition": "If removing one grain from a heap still leaves a heap, when does it stop being a heap? Tests vague predicates and boundary logic.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Sorites_paradox"],
+      "examples": ["Heap paradox", "Bald man paradox"],
+      "related_ids": ["logic:vagueness", "logic:boundaries"]
+    },
+    {
+      "id": "logic:bootstrap_paradox",
+      "term": "Bootstrap Paradox",
+      "type": "paradox",
+      "definition": "An object or information is sent back in time and becomes the cause of itself—raising questions about origin and causality.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Bootstrap_paradox"],
+      "examples": ["Time travel causality loops", "Self-caused events"],
+      "related_ids": ["logic:causality", "logic:time_travel"]
+    },
+    {
+      "id": "logic:omnipotence_paradox",
+      "term": "Omnipotence Paradox",
+      "type": "paradox",
+      "definition": "Can an omnipotent being create a stone so heavy that it cannot lift it? Challenges the coherence of absolute power.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Omnipotence_paradox"],
+      "examples": ["Stone too heavy to lift", "Limits of power"],
+      "related_ids": ["logic:power", "logic:logic_limits"]
+    },
+    {
+      "id": "logic:unexpected_hanging",
+      "term": "Unexpected Hanging Paradox",
+      "type": "paradox",
+      "definition": "A prisoner is told he will be hanged unexpectedly, but logical deduction seems to prevent the surprise—yet the execution still surprises him.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Unexpected_hanging_paradox"],
+      "examples": ["Surprise executions", "Self-defeating prophecies"],
+      "related_ids": ["logic:prediction", "logic:self_reference"]
+    }
+  ],
+  "learning_principles": [
+    "Prefer the simplest explanation that accounts for all facts.",
+    "Eliminate unnecessary assumptions and redundant steps.",
+    "Paradoxes reveal limits of logic and require careful analysis.",
+    "Self-reference often leads to contradictions that must be avoided.",
+    "Vagueness in language creates boundary problems that parsimony helps resolve.",
+    "Complex systems should be simplified without losing essential function.",
+    "Question assumptions that introduce unnecessary complexity."
+  ],
+  "parameters": {
+    "logic_method": "parsimonious",
+    "complexity_handling": "minimalist",
+    "paradox_resolution": "analytical",
+    "inference_style": "essential_only",
+    "assumption_elimination": "aggressive"
+  },
+  "operations": {
+    "simplicity_filter": {
+      "description": "Filter explanations by parsimony principle",
+      "input": {"explanations": "array", "criteria": "object"},
+      "output": {"simplest_explanation": "object", "complexity_scores": "array"}
+    },
+    "paradox_analysis": {
+      "description": "Analyze paradoxes for logical structure and resolution",
+      "input": {"paradox": "object"},
+      "output": {"logical_structure": "object", "resolution_approaches": "array"}
+    },
+    "redundancy_elimination": {
+      "description": "Remove redundant elements from logical structures",
+      "input": {"structure": "object"},
+      "output": {"simplified_structure": "object", "removed_elements": "array"}
+    },
+    "boundary_testing": {
+      "description": "Test vague concepts for boundary conditions",
+      "input": {"concept": "string", "test_cases": "array"},
+      "output": {"boundary_points": "array", "vagueness_assessment": "object"}
+    }
+  },
+  "integration": {
+    "compatible_modules": ["simplicity_engine", "paradox_analyzer", "logic_minimizer"],
+    "input_sources": ["complex_explanations", "paradoxical_statements", "redundant_structures"],
+    "output_destinations": ["simplified_models", "resolved_paradoxes", "optimized_logic"]
+  },
+  "performance_metrics": {
+    "simplicity_achievement": "maximal",
+    "paradox_resolution": "effective",
+    "redundancy_elimination": "complete",
+    "logical_efficiency": "optimal"
+  },
+  "access_control": {
+    "mutable": false,
+    "curator": "Bryan A. Spruk",
+    "authorized_editors": ["Bryan A. Spruk"],
+    "hash": "sha256:f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4"
+  }
+}

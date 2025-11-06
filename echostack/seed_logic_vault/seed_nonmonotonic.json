@@ -1,0 +1,152 @@
+{
+  "$schema": "https://schemas.seedvault.org/core/v1.1.0",
+  "vault_name": "SeedVault_Nonmonotonic",
+  "vault_id": "seed_nonmonotonic",
+  "version": "1.1.0",
+  "category": "Logic",
+  "type": "seed",
+  "license": "CC0-1.0",
+  "generated": "2025-10-23T12:00:00Z",
+  "compatibility": "backward-compatible",
+  "description": "Nonmonotonic logic principles for reasoning with incomplete information, defaults, and belief revision",
+  "author": "Bryan A. Spruk",
+  "source": "CALI - System Heuristics and Crossover Logic",
+  "reasoning_type": "nonmonotonic_logic",
+  "immutable": true,
+  "index": {
+    "defaults": "logic:defaults",
+    "exceptions": "logic:exceptions",
+    "justification": "logic:justification",
+    "reiteration": "logic:reiteration",
+    "conflict_resolution": "logic:conflict_resolution",
+    "belief_revision": "logic:belief_revision",
+    "defeasible_reasoning": "logic:defeasible_reasoning"
+  },
+  "entries": [
+    {
+      "id": "logic:defaults",
+      "term": "Defaults",
+      "type": "principle",
+      "definition": "In the absence of a contradictory exception, a belief holds true or an action is executed. Assumptions that can be overridden.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Default_logic"],
+      "examples": ["Birds fly (unless specified otherwise)", "People are trustworthy (until evidence suggests otherwise)"],
+      "related_ids": ["logic:exceptions", "logic:defeasible_reasoning"]
+    },
+    {
+      "id": "logic:exceptions",
+      "term": "Exceptions",
+      "type": "principle",
+      "definition": "A condition that overrides a default assumption or action. Specific cases that contradict general rules.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Exception_handling"],
+      "examples": ["Penguins don't fly", "Some people are not trustworthy"],
+      "related_ids": ["logic:defaults", "logic:conflict_resolution"]
+    },
+    {
+      "id": "logic:justification",
+      "term": "Justification",
+      "type": "process",
+      "definition": "A new piece of information that invalidates a prior belief. Evidence that triggers belief revision.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Justification_(epistemology)"],
+      "examples": ["New evidence contradicting a theory", "Witness testimony changing a verdict"],
+      "related_ids": ["logic:belief_revision", "logic:reiteration"]
+    },
+    {
+      "id": "logic:reiteration",
+      "term": "Reiteration",
+      "type": "process",
+      "definition": "The act of recursively re-evaluating a set of beliefs and actions in the presence of new data or conflict.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Belief_revision"],
+      "examples": ["Updating scientific theories with new data", "Revising investment strategies based on market changes"],
+      "related_ids": ["logic:belief_revision", "logic:justification"]
+    },
+    {
+      "id": "logic:conflict_resolution",
+      "term": "Conflict Resolution",
+      "type": "process",
+      "definition": "The process of identifying and resolving inconsistencies between a default and an exception.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Conflict_resolution"],
+      "examples": ["Prioritizing specific rules over general ones", "Resolving contradictory evidence"],
+      "related_ids": ["logic:exceptions", "logic:defeasible_reasoning"]
+    },
+    {
+      "id": "logic:belief_revision",
+      "term": "Belief Revision",
+      "type": "framework",
+      "definition": "Formal methods for updating belief sets when new information conflicts with existing beliefs.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Belief_revision"],
+      "examples": ["AGM theory of belief revision", "Updating world models with sensor data"],
+      "related_ids": ["logic:justification", "logic:reiteration"]
+    },
+    {
+      "id": "logic:defeasible_reasoning",
+      "term": "Defeasible Reasoning",
+      "type": "method",
+      "definition": "Reasoning where conclusions can be defeated by new evidence. Nonmonotonic inference patterns.",
+      "source_id": "WD:Q51666",
+      "reference_urls": ["https://en.wikipedia.org/wiki/Defeasible_reasoning"],
+      "examples": ["Legal reasoning with precedents", "Medical diagnosis with symptoms"],
+      "related_ids": ["logic:defaults", "logic:exceptions"]
+    }
+  ],
+  "learning_principles": [
+    "A working assumption is better than no assumption.",
+    "Be willing to discard old conclusions in favor of new evidence.",
+    "A system must be able to justify why a default was overridden.",
+    "Reasoning should be defeasible, not monotonic.",
+    "Conflicts require resolution, not avoidance.",
+    "Beliefs should be revised when justified by new information.",
+    "Defaults provide efficiency, exceptions provide accuracy."
+  ],
+  "parameters": {
+    "logic_type": "nonmonotonic",
+    "inference_style": "defeasible",
+    "belief_update": "revision_based",
+    "conflict_handling": "resolution_oriented",
+    "assumption_management": "default_exception"
+  },
+  "operations": {
+    "default_application": {
+      "description": "Apply default rules unless exceptions apply",
+      "input": {"situation": "object", "defaults": "array", "exceptions": "array"},
+      "output": {"applicable_defaults": "array", "conflicts": "array"}
+    },
+    "belief_revision": {
+      "description": "Update belief set with new information",
+      "input": {"current_beliefs": "array", "new_information": "object"},
+      "output": {"revised_beliefs": "array", "justification": "string"}
+    },
+    "conflict_detection": {
+      "description": "Identify conflicts between beliefs or rules",
+      "input": {"beliefs": "array", "rules": "array"},
+      "output": {"conflicts": "array", "resolution_suggestions": "array"}
+    },
+    "defeasible_inference": {
+      "description": "Perform defeasible reasoning with potential defeat",
+      "input": {"premises": "array", "rules": "array"},
+      "output": {"conclusions": "array", "defeaters": "array"}
+    }
+  },
+  "integration": {
+    "compatible_modules": ["belief_engine", "conflict_resolver", "adaptive_reasoner"],
+    "input_sources": ["incomplete_data", "conflicting_evidence", "default_assumptions"],
+    "output_destinations": ["belief_updates", "decision_making", "knowledge_base"]
+  },
+  "performance_metrics": {
+    "reasoning_flexibility": "high",
+    "conflict_resolution": "effective",
+    "belief_accuracy": "adaptive",
+    "inference_efficiency": "balanced"
+  },
+  "access_control": {
+    "mutable": false,
+    "curator": "Bryan A. Spruk",
+    "authorized_editors": ["Bryan A. Spruk"],
+    "hash": "sha256:e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3"
+  }
+}

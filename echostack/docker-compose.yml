@@ -1,0 +1,121 @@
+# docker-compose.yml for EchoStack Module
+
+version: "3.9"
+
+services:
+  echostack:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: echostack_container
+    ports:
+      - "8003:8003"
+    volumes:
+      # Mount logs directory for persistent logging
+      - ./logs:/app/logs
+      # Mount data directory for persistent telemetry
+      - ./data:/app/data
+      # Mount seed vaults (read-only)
+      - ./seed_logic_vault:/app/seed_logic_vault:ro
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - ECHOSTACK_ENV=production
+      - ECHOSTACK_LOG_LEVEL=INFO
+      - TELEMETRY_PATH=/app/data/telemetry.json
+    networks:
+      - echostack_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - echostack_db
+
+  echostack_db:
+    image: postgres:15-alpine
+    container_name: echostack_postgres
+    environment:
+      - POSTGRES_DB=echostack
+      - POSTGRES_USER=echostack
+      - POSTGRES_PASSWORD=secure_password_2025
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - echostack_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U echostack"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  echostack_redis:
+    image: redis:7-alpine
+    container_name: echostack_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - echostack_network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  echostack_monitoring:
+    image: prom/prometheus:latest
+    container_name: echostack_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - echostack_network
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+
+  echostack_grafana:
+    image: grafana/grafana:latest
+    container_name: echostack_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin2025
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - echostack_network
+    restart: unless-stopped
+    depends_on:
+      - echostack_monitoring
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  echostack_network:
+    driver: bridge

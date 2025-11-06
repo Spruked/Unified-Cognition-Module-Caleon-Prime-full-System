@@ -1,0 +1,36 @@
+{
+  "module_name": "EchoStack",
+  "version": "1.0.0",
+  "author": "Bryan A. Spruk",
+  "description": "Modular logic filter and trace routing engine for echo payloads",
+  "seed_registry": [
+    "seed_ockhams_filter.json",
+    "seed_hume.json",
+    "seed_taleb.json",
+    "seed_nonmonotonic.json",
+    "seed_apriori.json",
+    "seed_aposteriori.json",
+    "seed_proverbs.json"
+  ],
+  "logic_filters": {
+    "default_filter": "echo_logic_filter.py",
+    "epistemic_overlay": "epistemic_filter.py",
+    "trace_router": "trace_router.py"
+  },
+  "integration": {
+    "echo_ripple": {
+      "logic_filter": "ripple_logic_filter.py",
+      "enabled": true
+    },
+    "anterior_helix": {
+      "gyro_cortical_harmonizer": "reserved",
+      "enabled": false
+    }
+  },
+  "flags": {
+    "enable_paradox_detection": true,
+    "enable_reflex_tier_annotation": true,
+    "strict_seed_alignment": false,
+    "log_trace_events": true
+  }
+}
