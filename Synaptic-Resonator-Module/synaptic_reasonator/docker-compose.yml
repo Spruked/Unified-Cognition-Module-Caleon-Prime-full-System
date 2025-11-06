@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  resonator:
+    build: .
+    container_name: resonator
+    ports:
+      - "8008:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    volumes:
+      - ./resonator_core:/app/resonator_core
+      - ./tests:/app/tests
+      - ./verdict_stream.jsonl:/app/verdict_stream.jsonl
+      - ./SynapticVault.log:/app/SynapticVault.log
+      - ./PyramidVault.log:/app/PyramidVault.log

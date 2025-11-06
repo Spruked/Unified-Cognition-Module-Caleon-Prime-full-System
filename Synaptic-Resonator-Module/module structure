@@ -1,0 +1,16 @@
+
+synaptic_reasonator/
+├── Dockerfile
+├── entrypoint.py
+├── requirements.txt
+├── resonator_core/
+│   ├── deductive_reasoner.py
+│   ├── inductive_reasoner.py
+│   ├── intuitive_reasoner.py
+│   ├── resonator_vault.py
+│   ├── synaptic_nodes.py
+│   ├── synaptic_reasonator.py
+│   └── utils.py
+└── tests/
+    └── test_reasonator.py
+

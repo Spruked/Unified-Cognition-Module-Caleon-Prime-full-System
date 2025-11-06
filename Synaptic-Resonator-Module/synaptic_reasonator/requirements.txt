@@ -1,0 +1,4 @@
+# requirements.txt for resonator
+jsonschema
+fastapi
+uvicorn
