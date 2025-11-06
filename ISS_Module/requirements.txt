@@ -1,0 +1,67 @@
+# Core dependencies for ISS Module
+# Web framework and API
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+jinja2>=3.1.2
+python-jose[cryptography]>=3.3.0
+
+# CLI interface
+click>=8.1.7
+
+# Data handling
+pydantic>=2.5.0
+aiofiles>=23.2.0
+
+# Database and storage (optional, for future expansion)
+sqlalchemy>=2.0.23
+alembic>=1.13.0
+
+# Export and data analysis
+pandas>=2.1.4
+openpyxl>=3.1.2
+
+# Logging and monitoring
+structlog>=23.2.0
+colorama>=0.4.6
+
+# Prometheus Prime integration dependencies
+pydantic-settings>=2.0.0
+redis>=5.0.0
+httpx>=0.25.2
+
+# Async support  
+typing-extensions>=4.8.0
+
+# Development and testing (optional)
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+pytest-cov>=4.0.0
+httpx>=0.25.2
+
+# Code quality (optional)
+black>=23.11.0
+isort>=5.12.0
+flake8>=6.1.0
+mypy>=1.7.0
+
+# VisiData integration (optional)
+visidata>=2.11
+
+# Security
+passlib[bcrypt]>=1.7.4
+python-dotenv>=1.0.0
+
+# Date and time handling
+python-dateutil>=2.8.2
+pytz>=2023.3
+
+# Additional utilities
+click>=8.1.7
+rich>=13.7.0
+pathlib2>=2.3.7
+
+# Optional: For enhanced data visualization
+matplotlib>=3.8.2
+seaborn>=0.13.0
+plotly>=5.17.0
