@@ -1,0 +1,7 @@
+# Core dependencies for Cochlear Processor v2
+psutil>=5.9.0          # system health metrics
+numpy>=1.26.0          # numeric processing for audio frames
+scipy>=1.11.0          # signal processing utilities
+soundfile>=0.12.1      # audio read/write (libsndfile)
+coqui-tts>=0.15.0      # prosody extraction / TTS analysis
+librosa>=0.10.1        # spectral and acoustic feature extraction

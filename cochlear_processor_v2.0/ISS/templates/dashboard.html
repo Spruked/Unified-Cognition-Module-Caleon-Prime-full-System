@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISS Module - Dashboard</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #004080;
+            --accent-color: #ffaa00;
+            --bg-color: #0a0a0a;
+            --surface-color: #1a1a1a;
+            --text-color: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #333333;
+            --success-color: #00aa00;
+            --warning-color: #ffaa00;
+            --error-color: #cc0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 2rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header .stardate {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: normal;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            background-color: var(--surface-color);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .content {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-online { background-color: var(--success-color); }
+        .status-offline { background-color: var(--error-color); }
+        .status-warning { background-color: var(--warning-color); }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+
+        .log-entry {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .log-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .log-entry-content {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .tag {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--surface-color);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .close {
+            color: var(--text-secondary);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem;
+        }
+
+        .error {
+            color: var(--error-color);
+            background-color: rgba(204, 0, 0, 0.1);
+            border: 1px solid var(--error-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+                border-right: none;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .content {
+                order: 1;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            🚀 ISS Module Dashboard
+            <span class="stardate" id="stardate">Loading...</span>
+        </h1>
+    </header>
+
+    <div class="main-container">
+        <nav class="sidebar">
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#log" class="nav-link">Captain's Log</a></li>
+                <li><a href="#analytics" class="nav-link">Analytics</a></li>
+                <li><a href="#export" class="nav-link">Export Data</a></li>
+                <li><a href="#settings" class="nav-link">Settings</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view">
+                <div class="dashboard-grid">
+                    <!-- System Status Card -->
+                    <div class="card">
+                        <h2>System Status</h2>
+                        <div class="metric">
+                            <span>Status</span>
+                            <span class="metric-value">
+                                <span class="status-indicator status-online"></span>
+                                <span id="system-status">Online</span>
+                            </span>
+                        </div>
+                        <div class="metric">
+                            <span>Uptime</span>
+                            <span class="metric-value" id="system-uptime">--</span>
+                        </div>
+                        <div class="metric">
+                            <span>Active Modules</span>
+                            <span class="metric-value" id="active-modules">--</span>
+                        </div>
+                        <div class="metric">
+                            <span>Log Entries</span>
+                            <span class="metric-value" id="total-entries">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Card -->
+                    <div class="card">
+                        <h2>Quick Actions</h2>
+                        <div class="quick-actions">
+                            <button class="btn" onclick="openNewLogModal()">New Log Entry</button>
+                            <button class="btn btn-secondary" onclick="refreshDashboard()">Refresh Status</button>
+                            <button class="btn btn-secondary" onclick="exportData()">Export Data</button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Logs Card -->
+                    <div class="card">
+                        <h2>Recent Log Entries</h2>
+                        <div id="recent-logs">
+                            <div class="loading">Loading recent entries...</div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Card -->
+                    <div class="card">
+                        <h2>Statistics</h2>
+                        <div id="statistics">
+                            <div class="loading">Loading statistics...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Captain's Log View -->
+            <div id="log-view" class="view" style="display: none;">
+                <h2>Captain's Log</h2>
+                <div style="margin-bottom: 2rem;">
+                    <button class="btn" onclick="openNewLogModal()">New Entry</button>
+                    <input type="search" placeholder="Search logs..." id="search-input" style="margin-left: 1rem; padding: 0.5rem;">
+                </div>
+                <div id="log-entries">
+                    <div class="loading">Loading log entries...</div>
+                </div>
+            </div>
+
+            <!-- Other views would be implemented similarly -->
+            <div id="analytics-view" class="view" style="display: none;">
+                <h2>Analytics</h2>
+                <p>Analytics features coming soon...</p>
+            </div>
+
+            <div id="export-view" class="view" style="display: none;">
+                <h2>Export Data</h2>
+                <p>Export features coming soon...</p>
+            </div>
+
+            <div id="settings-view" class="view" style="display: none;">
+                <h2>Settings</h2>
+                <p>Settings panel coming soon...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- New Log Entry Modal -->
+    <div id="newLogModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New Log Entry</h2>
+                <span class="close" onclick="closeNewLogModal()">&times;</span>
+            </div>
+            <form id="newLogForm">
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea id="content" name="content" required placeholder="Enter your log entry..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option value="personal">Personal</option>
+                        <option value="mission">Mission</option>
+                        <option value="technical">Technical</option>
+                        <option value="observation">Observation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags (comma-separated)</label>
+                    <input type="text" id="tags" name="tags" placeholder="tag1, tag2, tag3">
+                </div>
+                <div class="form-group">
+                    <label for="mood">Mood</label>
+                    <input type="text" id="mood" name="mood" placeholder="Optional mood indicator">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" placeholder="Optional location">
+                </div>
+                <div style="text-align: right; margin-top: 2rem;">
+                    <button type="button" class="btn btn-secondary" onclick="closeNewLogModal()">Cancel</button>
+                    <button type="submit" class="btn" style="margin-left: 1rem;">Create Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentView = 'dashboard';
+        let systemData = {};
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        async function initializeApp() {
+            try {
+                await updateStardate();
+                await loadSystemStatus();
+                await loadRecentLogs();
+                await loadStatistics();
+                
+                // Set up periodic updates
+                setInterval(updateStardate, 60000); // Update every minute
+                setInterval(loadSystemStatus, 30000); // Update every 30 seconds
+            } catch (error) {
+                console.error('Failed to initialize app:', error);
+                showError('Failed to initialize application');
+            }
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const viewName = this.getAttribute('href').substring(1);
+                switchView(viewName);
+            });
+        });
+
+        function switchView(viewName) {
+            // Hide all views
+            document.querySelectorAll('.view').forEach(view => {
+                view.style.display = 'none';
+            });
+            
+            // Show selected view
+            const targetView = document.getElementById(viewName + '-view');
+            if (targetView) {
+                targetView.style.display = 'block';
+            }
+            
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[href="#${viewName}"]`).classList.add('active');
+            
+            currentView = viewName;
+            
+            // Load view-specific data
+            switch(viewName) {
+                case 'log':
+                    loadAllLogs();
+                    break;
+                case 'analytics':
+                    loadAnalytics();
+                    break;
+            }
+        }
+
+        // API functions
+        async function apiCall(endpoint, options = {}) {
+            try {
+                const response = await fetch('/api' + endpoint, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API call failed: ${response.status}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('API call failed:', error);
+                throw error;
+            }
+        }
+
+        async function updateStardate() {
+            try {
+                const data = await apiCall('/stardate');
+                document.getElementById('stardate').textContent = `Stardate ${data.stardate}`;
+            } catch (error) {
+                console.error('Failed to update stardate:', error);
+            }
+        }
+
+        async function loadSystemStatus() {
+            try {
+                const status = await apiCall('/status');
+                systemData.status = status;
+                
+                document.getElementById('system-status').textContent = status.status;
+                document.getElementById('system-uptime').textContent = status.uptime || 'Unknown';
+                document.getElementById('active-modules').textContent = status.active_modules.length;
+                document.getElementById('total-entries').textContent = status.total_log_entries;
+                
+                // Update status indicator
+                const indicator = document.querySelector('.status-indicator');
+                indicator.className = 'status-indicator ' + 
+                    (status.status === 'online' ? 'status-online' : 'status-offline');
+                
+            } catch (error) {
+                console.error('Failed to load system status:', error);
+                showError('Failed to load system status');
+            }
+        }
+
+        async function loadRecentLogs() {
+            try {
+                const logs = await apiCall('/log/entries?limit=5');
+                const container = document.getElementById('recent-logs');
+                
+                if (logs.length === 0) {
+                    container.innerHTML = '<p>No log entries found.</p>';
+                    return;
+                }
+                
+                container.innerHTML = logs.map(log => `
+                    <div class="log-entry">
+                        <div class="log-entry-header">
+                            <span>Stardate ${log.stardate} | ${log.category}</span>
+                            <span>${new Date(log.timestamp).toLocaleString()}</span>
+                        </div>
+                        <div class="log-entry-content">
+                            ${truncateText(log.content, 150)}
+                        </div>
+                        ${log.tags.length > 0 ? '<div style="margin-top: 0.5rem;">' + 
+                            log.tags.map(tag => `<span class="tag">${tag}</span>`).join('') + 
+                            '</div>' : ''}
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Failed to load recent logs:', error);
+                document.getElementById('recent-logs').innerHTML = 
+                    '<div class="error">Failed to load recent logs</div>';
+            }
+        }
+
+        async function loadStatistics() {
+            try {
+                const stats = await apiCall('/log/statistics');
+                const container = document.getElementById('statistics');
+                
+                let html = '';
+                
+                if (stats.total_entries > 0) {
+                    html += `<div class="metric">
+                        <span>Total Entries</span>
+                        <span class="metric-value">${stats.total_entries}</span>
+                    </div>`;
+                    
+                    // Categories
+                    Object.entries(stats.categories).forEach(([category, count]) => {
+                        html += `<div class="metric">
+                            <span>${category}</span>
+                            <span class="metric-value">${count}</span>
+                        </div>`;
+                    });
+                } else {
+                    html = '<p>No statistics available yet.</p>';
+                }
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Failed to load statistics:', error);
+                document.getElementById('statistics').innerHTML = 
+                    '<div class="error">Failed to load statistics</div>';
+            }
+        }
+
+        // Modal functions
+        function openNewLogModal() {
+            document.getElementById('newLogModal').style.display = 'block';
+        }
+
+        function closeNewLogModal() {
+            document.getElementById('newLogModal').style.display = 'none';
+            document.getElementById('newLogForm').reset();
+        }
+
+        // Form submission
+        document.getElementById('newLogForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const formData = new FormData(e.target);
+                const data = {
+                    content: formData.get('content'),
+                    category: formData.get('category'),
+                    tags: formData.get('tags') ? formData.get('tags').split(',').map(t => t.trim()) : [],
+                    mood: formData.get('mood') || null,
+                    location: formData.get('location') || null
+                };
+                
+                await apiCall('/log/entries', {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                });
+                
+                closeNewLogModal();
+                await loadRecentLogs();
+                await loadSystemStatus();
+                await loadStatistics();
+                
+                showSuccess('Log entry created successfully!');
+                
+            } catch (error) {
+                console.error('Failed to create log entry:', error);
+                showError('Failed to create log entry');
+            }
+        });
+
+        // Utility functions
+        function truncateText(text, maxLength) {
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength) + '...';
+        }
+
+        function showError(message) {
+            // Simple error display - could be enhanced with a toast system
+            console.error(message);
+            alert('Error: ' + message);
+        }
+
+        function showSuccess(message) {
+            // Simple success display - could be enhanced with a toast system
+            console.log(message);
+            alert('Success: ' + message);
+        }
+
+        function refreshDashboard() {
+            initializeApp();
+        }
+
+        function exportData() {
+            // Placeholder for export functionality
+            alert('Export functionality coming soon!');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('newLogModal');
+            if (e.target === modal) {
+                closeNewLogModal();
+            }
+        });
+    </script>
+</body>
+</html>

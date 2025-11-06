@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  cochlear_processor_v2_0:
+    build: .
+    container_name: cochlear_processor_v2.0
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app
+    networks:
+      - caleon_net
+    depends_on:
+      - iss_core
+    command: python cochlear_processor.py
+
+  iss_core:
+    image: python:3.11-slim
+    container_name: iss_core
+    working_dir: /app
+    volumes:
+      - ./iss_core:/app
+    command: python iss.py
+    networks:
+      - caleon_net
+
+networks:
+  caleon_net:
+    driver: bridge

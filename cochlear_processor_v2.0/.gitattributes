@@ -1,0 +1,5 @@
+# Normalize line endings for all text files
+* text=auto
+
+# Mark Jupyter notebooks as generated
+*.ipynb linguist-generated
