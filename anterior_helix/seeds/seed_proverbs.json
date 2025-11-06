@@ -1,0 +1,37 @@
+{
+  "vault_name": "SeedVault_Proverbs",
+  "source": "Book of Proverbs (Biblical, Solomon and others)",
+  "core_concepts": [
+    {
+      "term": "Wisdom",
+      "definition": "The beginning of wisdom is the fear of the Lord; fools despise wisdom and instruction."
+    },
+    {
+      "term": "Integrity",
+      "definition": "Better is the poor who walks in integrity than one who is crooked in speech and is a fool."
+    },
+    {
+      "term": "Diligence",
+      "definition": "The hand of the diligent will rule, while the slothful will be put to forced labor."
+    },
+    {
+      "term": "Speech",
+      "definition": "A gentle answer turns away wrath, but a harsh word stirs up anger."
+    },
+    {
+      "term": "Justice",
+      "definition": "Unequal weights and measures are an abomination to the Lord."
+    }
+  ],
+  "learning_principles": [
+    "Wisdom begins with humility and reverence for truth.",
+    "Integrity is worth more than wealth.",
+    "Hard work and persistence lead to influence.",
+    "Measured words preserve peace.",
+    "Justice requires fairness in all dealings."
+  ],
+  "access_control": {
+    "mutable": false,
+    "authorized_editor": "Bryan A. Spruk"
+  }
+}

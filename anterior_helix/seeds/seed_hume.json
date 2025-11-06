@@ -1,0 +1,36 @@
+{
+  "vault_name": "SeedVault_Hume",
+  "author": "David Hume",
+  "source": "An Enquiry Concerning Human Understanding (1748)",
+  "core_concepts": [
+    {
+      "term": "Critique of Causation",
+      "definition": "We never perceive a necessary connection between cause and effect — only constant conjunction."
+    },
+    {
+      "term": "Problem of Induction",
+      "definition": "No logical basis guarantees the future will resemble the past; belief is habit, not reason."
+    },
+    {
+      "term": "Impressions",
+      "definition": "Vivid, immediate perceptions from experience."
+    },
+    {
+      "term": "Ideas",
+      "definition": "Faint copies of impressions in thought and reasoning."
+    },
+    {
+      "term": "Custom and Habit",
+      "definition": "Primary drivers of belief and expectation."
+    }
+  ],
+  "learning_principles": [
+    "Be skeptical of claims beyond direct experience.",
+    "Understand that reasoning often rests on psychological patterns, not logic.",
+    "Recognize the limits of certainty in knowledge."
+  ],
+  "access_control": {
+    "mutable": false,
+    "authorized_editor": "Bryan A. Spruk"
+  }
+}

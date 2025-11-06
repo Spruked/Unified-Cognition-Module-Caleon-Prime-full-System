@@ -1,0 +1,36 @@
+{
+  "vault_name": "SeedVault_Kant",
+  "author": "Immanuel Kant",
+  "source": "Critique of Pure Reason (1781, 1787)",
+  "core_concepts": [
+    {
+      "term": "Copernican Revolution",
+      "definition": "Objects conform to our cognition, not the other way around."
+    },
+    {
+      "term": "Phenomena vs. Noumena",
+      "definition": "We can only know things as they appear to us (phenomena), never as they are in themselves (noumena)."
+    },
+    {
+      "term": "Transcendental Aesthetic",
+      "definition": "Space and time are a priori forms of intuition that structure all experience."
+    },
+    {
+      "term": "Categories of Understanding",
+      "definition": "Innate concepts (causality, substance, unity) applied to sensory data to make coherent experience."
+    },
+    {
+      "term": "Synthetic A Priori",
+      "definition": "Knowledge that is both informative and independent of experience, such as mathematics and basic laws of science."
+    }
+  ],
+  "learning_principles": [
+    "Learning is active — the mind shapes and organizes sensory data.",
+    "Some structures of thought are necessary preconditions for knowledge.",
+    "Limits of reason mean certain metaphysical truths are unknowable."
+  ],
+  "access_control": {
+    "mutable": false,
+    "authorized_editor": "Bryan A. Spruk"
+  }
+}

@@ -1,0 +1,12 @@
+tunnel: unified-cognition
+credentials-file: C:\Users\bryan\.cloudflared\0d409f00-322b-4e92-96d2-c49589fd4af2.json
+
+ingress:
+  # Route dashboard traffic to frontend
+  - hostname: spruked.com
+    service: http://localhost:8080
+  # Route API traffic to cerebral cortex
+  - hostname: api.spruked.com
+    service: http://localhost:8000
+  # Catch-all rule
+  - service: http_status:404

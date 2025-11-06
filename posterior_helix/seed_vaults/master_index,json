@@ -1,0 +1,65 @@
+{
+  "version": "1.1.0",
+  "query_map": {
+    "by_type": ["constant", "entity", "relation", "skill", "knowledge", "law", "concept", "process", "classification", "theory", "field", "event", "period", "movement", "method"],
+    "by_category": ["Physics", "Geography", "Biology", "Logic", "Mathematics", "History", "Psychology"]
+  },
+  "vaults": [
+    {
+      "name": "Physics Constants",
+      "file": "SeedVault-Physics-Constants-1.1.0.json",
+      "hash": "sha256:a1b2c3...",
+      "category": "Physics",
+      "entry_count": 50,
+      "size_kb": 12
+    },
+    {
+      "name": "Math Reference Vault",
+      "file": "vault_math_reference.json",
+      "hash": "sha256:math_reference_2025",
+      "category": "Mathematics",
+      "entry_count": 6,
+      "size_kb": 8
+    },
+    {
+      "name": "Biology Reference Vault",
+      "file": "vault_biology_reference.json",
+      "hash": "sha256:bio_reference_2025",
+      "category": "Biology",
+      "entry_count": 6,
+      "size_kb": 10
+    },
+    {
+      "name": "Geography Reference Vault",
+      "file": "vault_geo_reference.json",
+      "hash": "sha256:geo_reference_2025",
+      "category": "Geography",
+      "entry_count": 6,
+      "size_kb": 12
+    },
+    {
+      "name": "Physics Reference Vault",
+      "file": "vault_physics_reference.json",
+      "hash": "sha256:phys_reference_2025",
+      "category": "Physics",
+      "entry_count": 6,
+      "size_kb": 10
+    },
+    {
+      "name": "History Reference Vault",
+      "file": "vault_history_reference.json",
+      "hash": "sha256:hist_reference_2025",
+      "category": "History",
+      "entry_count": 6,
+      "size_kb": 14
+    },
+    {
+      "name": "Psychology Reference Vault",
+      "file": "vault_psych_reference.json",
+      "hash": "sha256:psych_reference_2025",
+      "category": "Psychology",
+      "entry_count": 6,
+      "size_kb": 16
+    }
+  ]
+}

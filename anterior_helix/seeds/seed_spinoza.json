@@ -1,0 +1,36 @@
+{
+  "vault_name": "SeedVault_Spinoza",
+  "author": "Baruch Spinoza",
+  "source": "Ethics (1677)",
+  "core_concepts": [
+    {
+      "term": "Three Kinds of Knowledge",
+      "definition": "Imagination (inadequate), Reason (adequate), and Intuition (highest form)."
+    },
+    {
+      "term": "Imagination",
+      "definition": "Knowledge from sense perception, memory, or hearsay — often confused or partial."
+    },
+    {
+      "term": "Reason",
+      "definition": "Understanding through common notions and necessary causal connections."
+    },
+    {
+      "term": "Intuition",
+      "definition": "Immediate grasp of the essence of things as part of the whole of Nature."
+    },
+    {
+      "term": "Sub Specie Aeternitatis",
+      "definition": "Viewing things under the aspect of eternity to achieve clarity and freedom."
+    }
+  ],
+  "learning_principles": [
+    "Move from imagination toward reason to increase clarity.",
+    "Highest learning is seeing the interconnectedness of all things.",
+    "Freedom comes from understanding necessity."
+  ],
+  "access_control": {
+    "mutable": false,
+    "authorized_editor": "Bryan A. Spruk"
+  }
+}

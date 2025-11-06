@@ -1,0 +1,15 @@
+{
+  "input_data": "Test query for unified cognition system",
+  "context": {},
+  "priority": "normal",
+  "source": "test",
+  "user_id": "test_user",
+  "emotion": {
+    "stress": 0.5,
+    "confidence": 0.8,
+    "curiosity": 0.7
+  },
+  "relationship": "user",
+  "legacy_weight": "medium",
+  "bypass_ethics": false
+}

@@ -1,0 +1,17 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+httpx==0.25.2
+redis==5.0.1
+psycopg2-binary==2.9.9
+numpy==1.24.3
+requests==2.31.0
+speechrecognition==3.10.0
+gtts==2.5.1  # Google Text-to-Speech for reliable container-based voice synthesis
+playsound==1.2.2  # Simple audio playback
+pvporcupine==3.0.0  # Wake word detection
+# Core dependencies for VALLM engine:
+faiss-cpu==1.7.4
+pymongo==4.6.0
+# Optional ML dependencies (will fallback gracefully if not available):
+# sentence-transformers==2.2.2

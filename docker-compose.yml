@@ -1,0 +1,218 @@
+services:
+  # Supporting services
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: cortex_db
+      POSTGRES_USER: cortex_user
+      POSTGRES_PASSWORD: cortex_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database_init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cortex_user -d cortex_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mongo:
+    image: mongo:7-jammy
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_DATABASE: vallm_db
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Cerebral Cortex - Main orchestrator
+  cerebral_cortex:
+    build: ./cerebral_cortex
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      gyro-harmonizer:
+        condition: service_started
+      anterior-helix:
+        condition: service_started
+      posterior-helix:
+        condition: service_started
+      echoripple:
+        condition: service_started
+      echostack:
+        condition: service_started
+    environment:
+      - PYTHONPATH=/app
+      # Network Configuration
+      - NETWORK=${NETWORK}
+      - RPC_URL=${RPC_URL}
+      # Wallet Configuration (NEVER commit actual private keys)
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      - ACCOUNT_ADDRESS=${ACCOUNT_ADDRESS}
+      # IPFS Configuration
+      - WEB3_STORAGE_TOKEN=${WEB3_STORAGE_TOKEN}
+      # Contract Configuration
+      - CONTRACT_ADDRESS=${CONTRACT_ADDRESS}
+      # Database Configuration (if needed)
+      - DATABASE_URL=${DATABASE_URL}
+      # API Rate Limiting
+      - RATE_LIMIT_REQUESTS_PER_MINUTE=${RATE_LIMIT_REQUESTS_PER_MINUTE}
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Gyro Harmonizer - Ethics and harmonization (FINAL REASONING LAYER)
+  gyro-harmonizer:
+    image: gyro-harmonizer-gyro-harmonizer:latest
+    ports:
+      - "5001:5000"
+    command: ["python", "main.py", "--mode", "api"]
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Anterior Helix - Planning and decision making
+  anterior-helix:
+    build: ./anterior_helix
+    ports:
+      - "8001:8001"
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Posterior Helix - Recursive rethinking
+  posterior-helix:
+    build: ./posterior_helix
+    ports:
+      - "8005:8005"
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8005/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Echoripple - Memory and learning
+  echoripple:
+    build: ./echoripple
+    ports:
+      - "8004:8004"
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8004/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Echostack - Reasoning and logic
+  echostack:
+    build: ./echostack
+    container_name: echostack_container
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./echostack/logs:/app/logs
+      - ./echostack/data:/app/data
+      - ./echostack/seed_logic_vault:/app/seed_logic_vault:ro
+      - ./telemetry.json:/app/telemetry.json
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - ECHOSTACK_ENV=production
+      - ECHOSTACK_LOG_LEVEL=INFO
+      - TELEMETRY_PATH=/app/data/telemetry.json
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Phonatory Output - Speech synthesis and vocal output
+  phonatory-output:
+    build: ./Phonatory_Output_Module
+    ports:
+      - "8007:8007"
+    volumes:
+      - ./Phonatory_Output_Module/output_voice.wav:/app/output_voice.wav
+      - ./Phonatory_Output_Module/reference_voice.wav:/app/reference_voice.wav
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8007/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend - Web interface for the cognition system
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    networks:
+      - cognition_net
+    depends_on:
+      - cerebral_cortex
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres_data:
+  mongo_data:
+
+networks:
+  cognition_net:
+    driver: bridge

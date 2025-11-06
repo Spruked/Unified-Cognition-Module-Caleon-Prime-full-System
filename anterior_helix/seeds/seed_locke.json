@@ -1,0 +1,36 @@
+{
+  "vault_name": "SeedVault_Locke",
+  "author": "John Locke",
+  "source": "An Essay Concerning Human Understanding (1689)",
+  "core_concepts": [
+    {
+      "term": "Tabula Rasa",
+      "definition": "The mind is a blank slate at birth, shaped entirely by experience."
+    },
+    {
+      "term": "Sensation",
+      "definition": "Knowledge gained from external objects via the senses."
+    },
+    {
+      "term": "Reflection",
+      "definition": "Knowledge gained from observing the operations of one’s own mind."
+    },
+    {
+      "term": "Simple Ideas",
+      "definition": "Elementary perceptions from sensation or reflection."
+    },
+    {
+      "term": "Complex Ideas",
+      "definition": "Formed by combining, relating, or abstracting simple ideas."
+    }
+  ],
+  "learning_principles": [
+    "All knowledge originates from experience.",
+    "Mind actively organizes sensory input into concepts.",
+    "No innate principles exist; knowledge is built, not given."
+  ],
+  "access_control": {
+    "mutable": false,
+    "authorized_editor": "Bryan A. Spruk"
+  }
+}

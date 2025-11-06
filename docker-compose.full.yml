@@ -1,0 +1,202 @@
+services:
+  # Supporting services
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: cortex_db
+      POSTGRES_USER: cortex_user
+      POSTGRES_PASSWORD: cortex_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database_init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - cognition_net
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - cognition_net
+
+  mongo:
+    image: mongo:7-jammy
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: cognition_admin
+      MONGO_INITDB_ROOT_PASSWORD: cognition_pass2025
+      MONGO_INITDB_DATABASE: cognition_db
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo_init.js:/docker-entrypoint-initdb.d/mongo_init.js:ro
+    networks:
+      - cognition_net
+
+  # Cerebral Cortex - Main orchestrator
+  cerebral_cortex:
+    build: ./cerebral_cortex
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - gyro-harmonizer
+      - anterior-helix
+      - echoripple
+      - synaptic-resonator
+      - echostack
+      - echostack_db
+      - echostack_redis
+    environment:
+      - PYTHONPATH=/app
+    networks:
+      - cognition_net
+
+# Gyro Harmonizer - Ethics and harmonization (FINAL REASONING LAYER)
+  gyro-harmonizer:
+    image: gyro-harmonizer-gyro-harmonizer:latest
+    ports:
+      - "5001:5000"  # Changed from 5000 to avoid conflict
+    command: ["python", "main.py", "--mode", "api"]
+    # This is the critical final reasoning layer that harmonizes all cognitive outputs
+    networks:
+      - cognition_net
+
+  # Anterior Helix - Planning and decision making
+  anterior-helix:
+    build: ./anterior_helix
+    ports:
+      - "8001:8001"
+    networks:
+      - cognition_net
+
+  echoripple:
+    build: ./echoripple
+    ports:
+      - "8004:8004"
+    networks:
+      - cognition_net
+
+  # Echostack - Reasoning and logic
+  echostack:
+    build: ./echostack
+    container_name: echostack_container
+    ports:
+      - "8003:8003"
+    volumes:
+      # Mount logs directory for persistent logging
+      - ./echostack/logs:/app/logs
+      # Mount data directory for persistent telemetry
+      - ./echostack/data:/app/data
+      # Mount seed vaults (read-only)
+      - ./echostack/seed_logic_vault:/app/seed_logic_vault:ro
+      # Mount telemetry file
+      - ./telemetry.json:/app/telemetry.json
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - ECHOSTACK_ENV=production
+      - ECHOSTACK_LOG_LEVEL=INFO
+      - TELEMETRY_PATH=/app/data/telemetry.json
+    networks:
+      - cognition_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - echostack_db
+      - echostack_redis
+
+  echostack_db:
+    image: postgres:15-alpine
+    container_name: echostack_postgres
+    environment:
+      - POSTGRES_DB=echostack
+      - POSTGRES_USER=echostack
+      - POSTGRES_PASSWORD=secure_password_2025
+    volumes:
+      - echostack_postgres_data:/var/lib/postgresql/data
+      - ./echostack/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - cognition_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U echostack"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  echostack_redis:
+    image: redis:7-alpine
+    container_name: echostack_redis
+    volumes:
+      - echostack_redis_data:/data
+    networks:
+      - cognition_net
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # INPUT/OUTPUT MODULES
+  cochlear-processor:
+    build: ./cochlear_processor_v2.0
+    ports:
+      - "8088:8088"  # Core endpoint for receiving processed audio
+    volumes:
+      - ./cochlear_processor_v2.0:/app
+    environment:
+      - CORE_ENDPOINT_URL=http://cerebral_cortex:8000/process_audio
+    networks:
+      - cognition_net
+    # Note: This processes audio input and sends to cerebral cortex
+
+  synaptic-resonator:
+    build: ./Synaptic-Resonator-Module/synaptic_reasonator
+    ports:
+      - "8008:8000"  # Changed from 8000 to avoid conflict with cerebral cortex
+    volumes:
+      - ./Synaptic-Resonator-Module/synaptic_reasonator:/app
+    networks:
+      - cognition_net
+
+  phonatory-output:
+    build: ./Phonatory_Output_Module
+    ports:
+      - "8007:8007"  # Speech/audio output module
+    volumes:
+      - ./Phonatory_Output_Module:/app
+    networks:
+      - cognition_net
+
+  # Frontend - Web interface for the cognition system
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    networks:
+      - cognition_net
+    depends_on:
+      - cerebral_cortex
+
+volumes:
+  postgres_data:
+  echostack_postgres_data:
+  echostack_redis_data:
+  mongo_data:
+
+networks:
+  cognition_net:
+    driver: bridge

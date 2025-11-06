@@ -1,0 +1,8 @@
+{
+  "model_size": "base",
+  "language": "en",
+  "beam_size": 5,
+  "temperature": 0.0,
+  "timekeeper": "ISS",
+  "backup_timekeeper": "Standard"
+}
